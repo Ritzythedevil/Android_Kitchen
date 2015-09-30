@@ -634,6 +634,14 @@ then
         -e 's/delete_recursive("\/system");/unmount("\/system");\nformat("'"$param1"'", "'"$param2"'", "'"$sys_mnt"'", "0");\nmount("'"$param1"'", "'"$param2"'", "'"$sys_mnt"'", "\/system");/g' \
         updater-script
     fi
+		
+	#
+    # Octane Plus
+    #
+    if [ "$is_mt65xx_bootimg" == "1" ] 
+    then
+      sed -i -e 's/format("ext4", "EMMC", "\/dev\/block\/mmcblk0p5")/format("ext4", "EMMC", "\/dev\/block\/mmcblk0p5", "0")/g' updater-script
+    fi
 
     cd ../../../../..
   fi
